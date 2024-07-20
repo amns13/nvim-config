@@ -4,11 +4,11 @@ vim.g.mapleader = " "
 vim.keymap.set('i', 'jk', '<Esc>')
 
 -- Open Netrw (:Explore)
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex, {desc = "Open Explorer"})
 
 -- Move selected block up/down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move selected block up"})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {desc = "Move selected block down"})
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -26,9 +26,10 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Copy to system clipboard
 -- Note: A clipboard provider must be installed. Recommendation: `xclip`
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+y")
+-- NOT Using this because it hinders my workflow
+-- vim.keymap.set("n", "<leader>y", "\"+y")
+-- vim.keymap.set("v", "<leader>y", "\"+y")
+-- vim.keymap.set("n", "<leader>Y", "\"+y")
 
 -- Delete w/o copying, i.e., delete and copy to void register
 vim.keymap.set("n", "<leader>d", "\"_d")

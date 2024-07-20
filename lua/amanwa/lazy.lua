@@ -17,7 +17,9 @@ local plugins = {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make' },
+            { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" } }
     },
 
     -- Theme: rosepine
@@ -51,7 +53,7 @@ local plugins = {
     },
 
     -- LSP
-    { "neovim/nvim-lspconfig" },
+    { "neovim/nvim-lspconfig",  dependencies = { "nvimtools/none-ls.nvim" } },
 
     -- Neogen
     {
@@ -112,7 +114,10 @@ local plugins = {
             vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
         end
     },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    },
 
     {
         "mfussenegger/nvim-dap-python",
@@ -143,7 +148,30 @@ local plugins = {
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
-    }
+    },
+
+    -- Copilot
+    -- Keeping this for reference
+    -- { "github/coplilot.nvim", lazy=false}
+    -- Adding the below in after/copilots.lua
+    -- vim.g.copilot_no_tab_map = true
+    -- vim.g.copilot_assume_mapped = true
+    -- vim.api.nvim_set_keymap("i", "<F2>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    -- vim.api.nvim_set_keymap("i", "<F3>", 'copilot#Next()', { silent = true, expr = true })
+    -- vim.api.nvim_set_keymap("i", "<F4>", 'copilot#Previous()', { silent = true, expr = true })
+
+    -- Indent blankline
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        config = { scope = { enabled = false } }
+    },
+
+    -- Code context
+    { "nvim-treesitter/nvim-treesitter-context", },
+
+    -- Cspell
+    -- { "davidmh/cspell.nvim" }
 
 }
 

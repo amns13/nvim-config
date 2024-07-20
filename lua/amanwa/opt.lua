@@ -31,12 +31,16 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.opt.scrolloff = 10
 
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.updatetime = 100
 
 -- Folds
-vim.opt.foldlevel = 20
+-- Don't fold op openong a file
+vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Enable system clipboard support
+vim.opt.clipboard = "unnamedplus"
