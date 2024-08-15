@@ -44,3 +44,4 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Enable system clipboard support
 vim.opt.clipboard = "unnamedplus"
+

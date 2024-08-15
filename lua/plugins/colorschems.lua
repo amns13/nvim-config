@@ -1,5 +1,5 @@
-require("rose-pine").setup({
-    variant = "main", -- auto, main, moon, or dawn
+local rosepine_opts = {
+    variant = "main",      -- auto, main, moon, or dawn
     dark_variant = "main", -- main, moon, or dawn
     dim_inactive_windows = false,
     extend_background_behind_borders = true,
@@ -7,7 +7,7 @@ require("rose-pine").setup({
     enable = {
         terminal = true,
         legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-        migrations = true, -- Handle deprecated options automatically
+        migrations = true,        -- Handle deprecated options automatically
     },
 
     styles = {
@@ -63,9 +63,36 @@ require("rose-pine").setup({
         --     highlight.fg = palette.foam
         -- end
     end,
-})
+}
 
-vim.cmd("colorscheme rose-pine")
--- vim.cmd("colorscheme rose-pine-main")
--- vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme rose-pine-dawn")
+local kanagawa_opts ={
+    compile = false,             -- enable compiling the colorscheme
+    undercurl = true,            -- enable undercurls
+    commentStyle = { italic = true },
+    functionStyle = {},
+    keywordStyle = { italic = true},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = false,         -- do not set background color
+    dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+    terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+    colors = {                   -- add/modify theme and palette colors
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+    },
+    overrides = function(colors) -- add/modify highlights
+        return {}
+    end,
+    theme = "wave",              -- Load "wave" theme when 'background' option is not set
+    background = {               -- map the value of 'background' option to a theme
+        -- dark = "wave",           -- try "dragon" !
+        dark = "dragon",
+        light = "lotus"
+    },
+}
+
+return {
+    -- { "rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000, opts = rosepine_opts },
+    { "rebelot/kanagawa.nvim", lazy=false, priority=1000, opts = kanagawa_opts }
+}
+
