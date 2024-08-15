@@ -20,7 +20,7 @@ return {
         "danymat/neogen",
         config = true,
         lazy = true,
-        event = "InsertEnter",
+        cmd = {"Neogen",},
         opts = {
             enabled = true,
             languages = {

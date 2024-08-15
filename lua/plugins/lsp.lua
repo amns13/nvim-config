@@ -19,7 +19,8 @@ end
 return {
     {
         "williamboman/mason.nvim",
-        event = "VeryLazy",
+        lazy=true,
+        cmd = { "Mason","MasonInstall", "MasonUninstall" },
         opts = {
             ensure_installed = {
                 "pyright",
@@ -45,7 +46,6 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
-            "hrsh7th/nvim-cmp",
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip"
         },
@@ -67,8 +67,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
-                    { name = 'luasnip' }, -- For luasnip users.
-                }, {
+                    { name = 'luasnip' },
                     { name = 'buffer' },
                 })
             })
@@ -90,6 +89,13 @@ return {
                     { name = 'cmdline' }
                 }),
                 matching = { disallow_symbol_nonprefix_matching = false }
+            })
+
+            cmp.setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" }
+                }
             })
         end
     },
@@ -178,4 +184,32 @@ return {
             require("dap-python").setup("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python")
         end
     },
+
+    {
+        "nvim-neotest/neotest",
+        lazy = true,
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        }
+    },
+    {
+        "nvim-neotest/neotest-python",
+        lazy = true,
+        ft = { "python", },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-python")({
+                        dap = { justMyCode = false },
+                        args = { "--log-level", "DEBUG" },
+                        -- runner = "pytest",
+                        runner = "unittest",
+                    })
+                }
+            })
+        end
+    }
 }
