@@ -19,8 +19,7 @@ end
 return {
     {
         "williamboman/mason.nvim",
-        lazy=true,
-        cmd = { "Mason","MasonInstall", "MasonUninstall" },
+        event = "VeryLazy",
         opts = {
             ensure_installed = {
                 "pyright",
