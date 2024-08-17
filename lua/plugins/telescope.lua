@@ -56,7 +56,7 @@ local telescope_setup = function()
     local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
     setkeymap("n", "<Leader>fw", lga.live_grep_args, "Live grep", {})
     setkeymap("n", "<Leader>fcw", lga_shortcuts.grep_word_under_cursor, "Grep string under cursor", {})
-    setkeymap("n", "<Leader>fvs", lga_shortcuts.grep_visual_selection, "Grep visual selection", {})
+    setkeymap("v", "<Leader>fvs", lga_shortcuts.grep_visual_selection, "Grep visual selection", {})
 end
 
 
